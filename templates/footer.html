@@ -1,0 +1,20 @@
+<script>
+    // Function to set active class based on URL
+    function setActiveLink() {
+      const currentPath = window.location.pathname.split('/').pop(); // Get current path
+      const links = document.querySelectorAll('.list-group-item');
+
+      links.forEach(link => {
+        const linkPath = link.getAttribute('href');
+
+        if (linkPath === currentPath) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    }
+
+    // Call the function when the page loads
+    window.onload = setActiveLink;
+</script>

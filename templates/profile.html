@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>this is profile page.</title>
+{% include "header.html" %}
+</head>
+<body>
+{% include "left_sidebar.html" %}
+<main style="margin-top: 58px">
+    <div class="container pt-4">
+        <h1>This is a Heading {{name}}</h1>
+        <p>This is a paragraph.{{age}}</p>
+    </div>
+</main>
+
+<!-- MDB -->
+<script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.2/mdb.umd.min.js"
+></script>
+{% include "footer.html" %}
+</body>
+</html>
