@@ -10,12 +10,6 @@
 {% include "left_sidebar.html" %}
 <h1>This is a Heading {{name}}</h1>
 <p>This is a paragraph.{{age}}</p>
-<!-- MDB -->
-<script
-  type="text/javascript"
-  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.2/mdb.umd.min.js"
-></script>
-{% include "footer.html" %}
 <!--Main layout-->
 <main style="margin-top: 58px">
     <div class="container pt-4">
@@ -26,9 +20,126 @@
             <h5 class="mb-0 text-center"><strong>Sales</strong></h5>
           </div>
           <div class="card-body">
-            {% for item in data %}
-            <h5 class="mb-0 text-center"><strong>{{data.id}}</strong></h5>
+            <button class="btn btn-primary" type="button" id="fetchButton">click me</button>
+            {% comment %} modal start {% endcomment %}
+            <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-mdb-ripple-init data-mdb-modal-init data-mdb-target="#insertModal">
+  insert user data
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="insertModal" tabindex="-1" aria-labelledby="insertModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="insertModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-mdb-ripple-init data-mdb-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <!-- 2 column grid layout with text inputs for the first and last names -->
+          <div class="row mb-4">
+            <div class="col">
+              <div data-mdb-input-init class="form-outline">
+                <input type="text" id="form3Example1" class="form-control" />
+                <label class="form-label" for="form3Example1">First name</label>
+              </div>
+            </div>
+            <div class="col">
+              <div data-mdb-input-init class="form-outline">
+                <input type="text" id="form3Example2" class="form-control" />
+                <label class="form-label" for="form3Example2">Last name</label>
+              </div>
+            </div>
+          </div>
+        
+          <!-- Email input -->
+          <div data-mdb-input-init class="form-outline mb-4">
+            <input type="email" id="form3Example3" class="form-control" />
+            <label class="form-label" for="form3Example3">Email address</label>
+          </div>
+        
+          <!-- Password input -->
+          <div data-mdb-input-init class="form-outline mb-4">
+            <input type="date" id="form3Example4" class="form-control" />
+            <label class="form-label" for="form3Example4">dob</label>
+          </div>
+
+          <!-- phone input -->
+          <div data-mdb-input-init class="form-outline mb-4">
+            <input type="number" id="form3Example5" class="form-control" />
+            <label class="form-label" for="form3Example5">phone</label>
+          </div>
+
+          <!-- phone input -->
+          <div data-mdb-input-init class="form-outline mb-4">
+            <textarea row="4" class="form-control" id="form3Example6"></textarea>
+            <label class="form-label" for="form3Example6">address</label>
+          </div>
+        
+          <!-- Checkbox -->
+          <div class="form-check d-flex justify-content-center mb-4">
+            <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
+            <label class="form-check-label" for="form2Example33">
+              Subscribe to our newsletter
+            </label>
+          </div>
+        
+          <!-- Submit button -->
+          <button data-mdb-ripple-init id="insertUser" type="button" class="btn btn-primary btn-block mb-4">insert</button>
+        
+          <!-- Register buttons -->
+          <div class="text-center">
+            <p>or sign up with:</p>
+            <button data-mdb-ripple-init type="button" class="btn btn-secondary btn-floating mx-1">
+              <i class="fab fa-facebook-f"></i>
+            </button>
+        
+            <button data-mdb-ripple-init type="button" class="btn btn-secondary btn-floating mx-1">
+              <i class="fab fa-google"></i>
+            </button>
+        
+            <button data-mdb-ripple-init type="button" class="btn btn-secondary btn-floating mx-1">
+              <i class="fab fa-twitter"></i>
+            </button>
+        
+            <button data-mdb-ripple-init type="button" class="btn btn-secondary btn-floating mx-1">
+              <i class="fab fa-github"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-mdb-ripple-init data-mdb-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-mdb-ripple-init>Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+            {% comment %} modal end {% endcomment %}
+            <button class="btn btn-danger" type="button" id="deleteButton">delete</button>
+            <div id="result"></div>
+
+            {% if status1 == True %}
+            {% for user1 in data1 %}
+            <h5 class="mb-0 text-start">Name : <strong>{{user1.name}}</strong></h5>
             {% endfor %}
+            {% else %}
+            <p>status1 is invaild respoance</p>
+            {% endif %}
+            {% if status == True %}
+              <p>Status: True</p>
+            {% for user in data %}
+            <h5 class="mb-0 text-start">Name : <strong>{{user.name}}</strong></h5>
+            <h5 class="mb-0 text-center">E-mail : <strong>{{user.email}}</strong></h5>
+            <h5 class="mb-0 text-center">dob : <strong>{{user.dob}}</strong></h5>
+            {% endfor %}
+            {% else %}
+            <p>No data available or request failed.</p>
+            {% endif %}
+          </div>
+          <div class="card-body">
+            <h5 class="mb-0 text-center">hello world</h5>
           </div>
         </div>
       </section>
@@ -434,5 +545,11 @@
     </div>
   </main>
   <!--Main layout-->
+  <!-- MDB -->
+<script
+type="text/javascript"
+src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.2/mdb.umd.min.js"
+></script>
+{% include "footer.html" %}
 </body>
 </html>

@@ -186,3 +186,9 @@ def displaydata(request):
     except requests.exceptions.RequestException as e:
         # Handle request exceptions
         return render(request, 'home.html', {'data': [], 'error': str(e)})
+    
+def loginPage(request):
+    return render(request, 'login.html')
+
+def signupPage(request):
+    return render(request, 'signup.html')

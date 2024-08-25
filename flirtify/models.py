@@ -6,7 +6,7 @@ class UserData(models.Model):
     name = models.CharField(
         max_length=100,
         validators=[RegexValidator(
-            regex='^[a-zA-Z\s]+$',
+            regex=r'^[a-zA-Z\s]+$',
             message='Name must contain only letters and spaces.',
             code='invalid_name'
         )]

@@ -11,5 +11,7 @@ urlpatterns = [
     path('filterdata', views.filterData,name='filterdata'),
     path('adduserdata', views.addUserData,name='adduserdata'),
     path('updateuserdata', views.updateUserData,name='updateuserdata'),
-    path('deleteuserdata', views.deleteUserData,name='deleteUserData'),
+    path('api/deleteuserdata', views.deleteUserData,name='deleteUserData'),
+    path('login/', views.loginPage,name='login page'),
+    path('signup/', views.signupPage,name='signup page'),
 ]

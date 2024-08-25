@@ -18,3 +18,67 @@
     // Call the function when the page loads
     window.onload = setActiveLink;
 </script>
+<script>
+  $(document).ready(function() {
+      $('#fetchButton').click(function() {
+        console.log("button is clicked.");
+          $.ajax({
+              type: 'POST',
+              url: '/fetch-user-data/',
+              headers: {
+                  'X-CSRFToken': '{{ csrf_token }}'  // Ensure CSRF token is included
+              },
+              data: {},
+              success: function(data) {
+                  if (data.status == true) {
+                      $('#result').html(`
+                          <p>Name: ${data.data[0].name}</p>
+                          <p>Email: ${data.data[0].email}</p>
+                      `);
+                  } else {
+                      $('#result').text(data.message);
+                  }
+              },
+              error: function(xhr, status, error) {
+                  console.error('Error:', error);
+                  $('#result').text("An error occurred.");
+              }
+          });
+      });
+
+      $('insertUser').click(function(){
+        console.log("insert button is presses.");
+        first_name = document.getElementById('form3Example1').value;
+        last_name = document.getElementById('form3Example2').value;
+        name = first_name+' '+last_name;
+        email = document.getElementById('form3Example3').value;
+        dob = document.getElementById('form3Example4').value;
+        phone = document.getElementById('form3Example5').value;
+        address = document.getElementById('form3Example6').value;
+        $.ajax({
+          type: "POST",
+          url: "insertUser/",
+          headers:{
+            'X-CSRFToken' : '{{ csrf_token }}'
+          },
+          data: {
+            'name' : name,
+            'email' : email,
+            'dob' : dob,
+            'phone': phone,
+            'address' : address,
+          },
+          success: function(responce){
+            if (response.status) {
+              $('#result').text(response.message);
+          } else {
+              $('#result').text("Failed to insert data.");
+          }
+          },
+          error: function(xhr, error, status){
+            console.log("there is something error in code.");
+          }
+        })
+      })
+  });
+</script>
